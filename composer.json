@@ -1,6 +1,6 @@
 {
   "name": "fof/transliterator",
-  "description": "Transliterate non-ASCII characters in discussion url",
+  "description": "Transliterate non-ASCII characters in discussion URL",
   "keywords": [
     "flarum"
   ],

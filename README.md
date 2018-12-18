@@ -1,8 +1,19 @@
-# FoF Transliterator
+# URL Transliterator by FriendsOfFlarum
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/fof/transliterator.svg)](https://packagist.org/packages/fof/transliterator)
 
-A [Flarum](http://flarum.org) extension. Transliterate non-ASCII characters in discussion url
+A [Flarum](http://flarum.org) extension. Transliterate non-ASCII characters in discussion URL.
+
+### Screenshots
+
+Before:  
+![Imgur](https://i.imgur.com/Lng2CHh.jpg)
+  
+After:  
+![Imgur](https://i.imgur.com/RGfQ4Q6.jpg)
+  
+Settings:  
+![Imgur](https://i.imgur.com/HbFWQeC.jpg)
 
 ### Installation
 
@@ -16,9 +27,11 @@ composer require fof/transliterator
 
 ```sh
 composer update fof/transliterator
-php flarum cache:clear
 ```
 
 ### Links
 
 - [Packagist](https://packagist.org/packages/fof/transliterator)
+- [GitHub](https://github.com/FriendsOfFlarum/transliterator)
+
+An extension by [FriendsOfFlarum](https://github.com/FriendsOfFlarum).
