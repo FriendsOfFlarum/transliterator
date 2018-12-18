@@ -13,45 +13,15 @@ namespace FoF\Transliterator\Controllers;
 
 use Behat\Transliterator\Transliterator;
 use Flarum\Discussion\Discussion;
-use Flarum\Discussion\DiscussionRepository;
 use Flarum\User\AssertPermissionTrait;
-use Illuminate\Contracts\Bus\Dispatcher;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Symfony\Component\Translation\TranslatorInterface;
 use Zend\Diactoros\Response\JsonResponse;
 
 class ParseOldDiscussionsController implements RequestHandlerInterface
 {
     use AssertPermissionTrait;
-
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    /**
-     * @var DiscussionRepository
-     */
-    protected $discussions;
-
-    /**
-     * @var Dispatcher
-     */
-    protected $bus;
-
-    /**
-     * @param TranslatorInterface  $translator
-     * @param DiscussionRepository $discussions
-     * @param Dispatcher           $bus
-     */
-    public function __construct(TranslatorInterface $translator, DiscussionRepository $discussions, Dispatcher $bus)
-    {
-        $this->translator = $translator;
-        $this->discussions = $discussions;
-        $this->bus = $bus;
-    }
 
     /**
      * Handle the request and return a response.
