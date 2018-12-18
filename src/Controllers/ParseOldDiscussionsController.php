@@ -1,26 +1,26 @@
 <?php
 
-/**
- *  This file is part of fof/transliterator.
+/*
+ * This file is part of fof/transliterator
  *
- *  Copyright (c) 2018 FriendsOfFlarum.
+ * Copyright (c) 2018 FriendsOfFlarum.
  *
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace FoF\Transliterator\Controllers;
 
+use Behat\Transliterator\Transliterator;
 use Flarum\Discussion\Discussion;
 use Flarum\Discussion\DiscussionRepository;
 use Flarum\User\AssertPermissionTrait;
+use Illuminate\Contracts\Bus\Dispatcher;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Zend\Diactoros\Response\JsonResponse;
-use Illuminate\Contracts\Bus\Dispatcher;
-use Behat\Transliterator\Transliterator;
 
 class ParseOldDiscussionsController implements RequestHandlerInterface
 {
@@ -42,9 +42,9 @@ class ParseOldDiscussionsController implements RequestHandlerInterface
     protected $bus;
 
     /**
-     * @param TranslatorInterface $translator
+     * @param TranslatorInterface  $translator
      * @param DiscussionRepository $discussions
-     * @param Dispatcher $bus
+     * @param Dispatcher           $bus
      */
     public function __construct(TranslatorInterface $translator, DiscussionRepository $discussions, Dispatcher $bus)
     {
@@ -80,7 +80,7 @@ class ParseOldDiscussionsController implements RequestHandlerInterface
 
         return new JsonResponse([
             'success'   => true,
-            'count'   => $counter
+            'count'     => $counter,
         ]);
     }
 }
