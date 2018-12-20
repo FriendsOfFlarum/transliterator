@@ -3,4 +3,4 @@ fof-transliterator:
     settings:
       modal_title: FriendsOfFlarum Transliterator-Einstellungen
       parse_button: Existierende Diskussionen analysieren
-      result: {num} Analysierte Diskussionen
+      result: "{num} Analysierte Diskussionen"

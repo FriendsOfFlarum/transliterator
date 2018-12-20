@@ -3,4 +3,4 @@ fof-transliterator:
     settings:
       title: FriendsOfFlarum Налаштування Transliterator
       parse_button: Обробити існуючі дискусії
-      result: {num} дискусій оброблено
+      result: "{num} дискусій оброблено"

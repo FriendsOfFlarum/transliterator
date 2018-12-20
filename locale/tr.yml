@@ -3,4 +3,4 @@ fof-transliterator:
     settings:
       title: FriendsOfFlarum Transliterator Ayarları
       parse_button: Var olan tartışmaları işle
-      result: {num} işlenmiş tartışmalar
+      result: "{num} işlenmiş tartışmalar"
