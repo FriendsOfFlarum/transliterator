@@ -1,0 +1,6 @@
+fof-transliterator:
+  admin:
+    settings:
+      title: FriendsOfFlarum Transliterator
+      parse_button: Parser les discussions existantes
+      result: "1 discussion parsée|{count} discussions parsées"
