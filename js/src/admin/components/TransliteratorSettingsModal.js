@@ -1,11 +1,12 @@
-import Modal from 'flarum/components/Modal';
+import SettingsModal from 'flarum/components/SettingsModal';
 import Button from 'flarum/components/Button';
+import SelectItem from '@fof/components/admin/settings/items/SelectItem';
 
-export default class TransliteratorSettingsModal extends Modal {
+export default class TransliteratorSettingsModal extends SettingsModal {
     init() {
         super.init();
 
-        this.loading = false;
+        this.loadingParse = false;
         this.count = null;
     }
 
@@ -17,28 +18,39 @@ export default class TransliteratorSettingsModal extends Modal {
         return app.translator.trans('fof-transliterator.admin.settings.title');
     }
 
-    content() {
+    form() {
         const count = this.count !== null && String(this.count);
 
         return [
-            <div className="Modal-body">
-                {count && (
-                    <p>{app.translator.transChoice('fof-transliterator.admin.settings.result', count, { count })}</p>
-                )}
+            <div className="Form-group">
+                {count && <p>{app.translator.transChoice('fof-transliterator.admin.settings.result', count, { count })}</p>}
 
                 {Button.component({
                     className: 'Button Button--primary',
-                    loading: this.loading,
+                    loading: this.loadingParse,
                     disabled: !!count,
                     children: app.translator.trans('fof-transliterator.admin.settings.parse_button'),
-                    onclick: this.onsubmit.bind(this),
+                    onclick: this.submitParse.bind(this),
+                })}
+            </div>,
+            <div className="Form-group">
+                <label>{app.translator.trans('fof-transliterator.admin.settings.package_label')}</label>
+
+                {SelectItem.component({
+                    options: app.data['fof-transliterator.packages'].reduce((o, p) => {
+                        o[p] = app.translator.trans(`fof-transliterator.admin.settings.package_${p}_label`);
+
+                        return o;
+                    }, {}),
+                    key: 'fof-transliterator.package',
+                    required: true,
                 })}
             </div>,
         ];
     }
 
-    onsubmit() {
-        this.loading = true;
+    submitParse() {
+        this.loadingParse = true;
 
         return app
             .request({
@@ -46,7 +58,7 @@ export default class TransliteratorSettingsModal extends Modal {
                 url: `${app.forum.attribute('apiUrl')}/fof/transliterator/parse`,
             })
             .then(res => {
-                this.loading = false;
+                this.loadingParse = false;
                 this.count = res.count;
 
                 m.lazyRedraw();
