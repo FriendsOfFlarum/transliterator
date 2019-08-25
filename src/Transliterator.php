@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of fof/transliterator
+ *
+ * Copyright (c) 2018 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace FoF\Transliterator;
 
 use Behat\Transliterator\Transliterator as BehatTransliterator;
@@ -7,10 +16,10 @@ use Illuminate\Support\Arr;
 
 class Transliterator
 {
-    static $transliterators = [
+    public static $transliterators = [
         'behat' => null,
-        'php' => null,
-        'php2' => null
+        'php'   => null,
+        'php2'  => null,
     ];
 
     public static function transliterate(string $str)
