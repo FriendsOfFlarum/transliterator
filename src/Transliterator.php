@@ -39,12 +39,12 @@ class Transliterator
         return self::behat($str);
     }
 
-    private static function behat(string $str) : string
+    private static function behat(string $str): string
     {
         return BehatTransliterator::transliterate($str);
     }
 
-    private static function php(string $str) : string
+    private static function php(string $str): string
     {
         $str = transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0100-\u7fff] remove;', $str);
         $str = preg_replace('/[-\s]+/', '-', $str);
@@ -52,7 +52,7 @@ class Transliterator
         return trim($str, '-');
     }
 
-    private static function php2(string $str) : string
+    private static function php2(string $str): string
     {
         $str = transliterator_transliterate('Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC; [:Punctuation:] Remove; Lower();', $str);
         $str = preg_replace('/[-\s]+/', '-', $str);
