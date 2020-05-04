@@ -14,10 +14,10 @@ namespace FoF\Transliterator\Controllers;
 use Flarum\Discussion\Discussion;
 use Flarum\User\AssertPermissionTrait;
 use FoF\Transliterator\Transliterator;
+use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Zend\Diactoros\Response\JsonResponse;
 
 class ParseOldDiscussionsController implements RequestHandlerInterface
 {
