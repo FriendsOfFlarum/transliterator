@@ -1,10 +1,13 @@
-import SettingsModal from 'flarum/components/SettingsModal';
 import Button from 'flarum/components/Button';
-import SelectItem from '@fof/components/admin/settings/items/SelectItem';
+import { settings } from '@fof-components';
+const {
+    SettingsModal,
+    items: { SelectItem },
+} = settings;
 
 export default class TransliteratorSettingsModal extends SettingsModal {
-    init() {
-        super.init();
+    oninit(vnode) {
+        super.oninit(vnode);
 
         this.loadingParse = false;
         this.count = null;
@@ -29,9 +32,8 @@ export default class TransliteratorSettingsModal extends SettingsModal {
                     className: 'Button Button--primary',
                     loading: this.loadingParse,
                     disabled: !!count,
-                    children: app.translator.trans('fof-transliterator.admin.settings.parse_button'),
                     onclick: this.submitParse.bind(this),
-                })}
+                }, app.translator.trans('fof-transliterator.admin.settings.parse_button'))}
             </div>,
             <div className="Form-group">
                 <label>{app.translator.trans('fof-transliterator.admin.settings.package_label')}</label>
@@ -42,7 +44,7 @@ export default class TransliteratorSettingsModal extends SettingsModal {
 
                         return o;
                     }, {}),
-                    key: 'fof-transliterator.package',
+                    name: 'fof-transliterator.package',
                     required: true,
                 })}
             </div>,
@@ -61,7 +63,7 @@ export default class TransliteratorSettingsModal extends SettingsModal {
                 this.loadingParse = false;
                 this.count = res.count;
 
-                m.lazyRedraw();
+                m.redraw();
             });
     }
 }
