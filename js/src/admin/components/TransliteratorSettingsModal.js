@@ -46,6 +46,7 @@ export default class TransliteratorSettingsModal extends SettingsModal {
                     }, {}),
                     name: 'fof-transliterator.package',
                     required: true,
+                    setting: this.setting.bind(this)
                 })}
             </div>,
         ];
