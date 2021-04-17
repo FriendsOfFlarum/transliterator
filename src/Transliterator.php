@@ -24,7 +24,7 @@ class Transliterator
 
     public static function transliterate(string $str)
     {
-        $transliterator = app('flarum.settings')->get('fof-transliterator.package');
+        $transliterator = resolve('flarum.settings')->get('fof-transliterator.package');
 
         if ($transliterator != null && Arr::has(self::$transliterators, $transliterator)) {
             $callable = self::$transliterators[$transliterator];

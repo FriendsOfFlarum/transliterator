@@ -1,40 +1,40 @@
 import app from 'flarum/app';
-import Button from 'flarum/components/Button';
+import Button from 'flarum/common/components/Button';
 
 app.initializers.add('fof/transliterator', () => {
+    let parsingDiscussions = false;
+    let numberOfParsedDiscussions = null;
+
     app.extensionData
         .for('fof-transliterator')
-        .registerSetting(function() {
-            this.loadingParse = false;
-            this.count = null;
-            const counted = this.count !== null && String(this.count);
-
+        .registerSetting(function () {
             return (
                 <div className="Form-group">
-                    {counted && <p>{app.translator.transChoice('fof-transliterator.admin.settings.result', count, { count })}</p>}
-
                     {Button.component(
                         {
                             className: 'Button Button--primary',
-                            loading: this.loadingParse,
-                            disabled: !!counted,
+                            loading: parsingDiscussions,
+                            disabled: numberOfParsedDiscussions !== null,
                             onclick: () => {
-                                this.loadingParse = true;
+                                parsingDiscussions = true;
 
                                 return app
                                     .request({
                                         method: 'POST',
                                         url: `${app.forum.attribute('apiUrl')}/fof/transliterator/parse`,
                                     })
-                                    .then(res => {
-                                        this.loadingParse = false;
-                                        this.count = res.count;
+                                    .then((res) => {
+                                        parsingDiscussions = false;
+                                        numberOfParsedDiscussions = res.count;
 
                                         m.redraw();
                                     });
                             },
                         },
-                        app.translator.trans('fof-transliterator.admin.settings.parse_button')
+                        numberOfParsedDiscussions === null
+                            ? app.translator.trans('fof-transliterator.admin.settings.parse_button')
+                            : // Parse count to string to preserve zero in translated string
+                              app.translator.trans('fof-transliterator.admin.settings.result', { count: String(numberOfParsedDiscussions) })
                     )}
                 </div>
             );
